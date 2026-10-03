@@ -72,7 +72,6 @@ const servicesData = [
       'Postman',
       'CI/CD',
       'VS Code',
-      'Cloud Deployment',
     ],
   },
 ];
