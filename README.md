@@ -58,54 +58,13 @@
 
 ---
 
-<h2 align="center">03 / EXPERIENCE</h2>
-
-<p align="center">
-  Exploring real-world development through internships, academic work,
-  and hands-on projects.
-</p>
-
-<p align="center">
-  <b>Internships & Work Experience</b><br />
-  Add your role, organization, and duration here.
-</p>
-
----
-
-<h2 align="center">04 / SELECTED PROJECTS</h2>
-
-<table width="100%">
-  <tr>
-    <td width="50%" valign="top">
-      <h3>AI-Based House Construction Budget Prediction</h3>
-      A web-based project that estimates construction details and cost distribution based on a user's budget.
-      <br /><br />
-      <b>Stack:</b> Python · Flask · Machine Learning
-    </td>
-    <td width="50%" valign="top">
-      <h3>AYYAN SNACKS SPOT</h3>
-      A business website focused on showcasing the menu, brand identity, and customer contact experience.
-      <br /><br />
-      <b>Stack:</b> React · Firebase · Web Technologies
-    </td>
-  </tr>
-</table>
-
-<p align="center">
-  <a href="https://github.com/ShunmugaSundaramA07" title="Browse more projects">
-    <img src="https://img.shields.io/badge/VIEW%20ALL%20PROJECTS-18181b?style=for-the-badge&logo=github&logoColor=white" alt="View projects" />
-  </a>
-</p>
-
----
-
-<h2 align="center">05 / PORTFOLIO HIGHLIGHTS</h2>
+<h2 align="center">03 / PORTFOLIO HIGHLIGHTS</h2>
 
 <p align="center">
   <b>Animated Hero</b> &nbsp;·&nbsp;
   <b>Responsive Navigation</b> &nbsp;·&nbsp;
-  <b>Work Experience</b> &nbsp;·&nbsp;
-  <b>Skills & Projects</b> &nbsp;·&nbsp;
+  <b>Skills</b> &nbsp;·&nbsp;
+  <b>Projects</b> &nbsp;·&nbsp;
   <b>Contact Form</b>
 </p>
 
@@ -122,19 +81,15 @@
 
 ---
 
-<h2 align="center">06 / RUN LOCALLY</h2>
+<h2 align="center">04 / RUN LOCALLY</h2>
+
+Make sure Node.js and npm are installed, then open a terminal in the project directory.
 
 ```bash
-# Clone the repository
-git clone YOUR_GITHUB_REPOSITORY_URL
-
-# Open the project
-cd your-portfolio
-
 # Install dependencies
 npm install
 
-# Start development server
+# Start the development server
 npm run dev
 ```
 
@@ -161,7 +116,7 @@ VITE_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
 
 ---
 
-<h2 align="center">07 / CONNECT</h2>
+<h2 align="center">05 / CONNECT</h2>
 
 <p align="center">
   Interested in development, collaboration, or discussing an idea?
