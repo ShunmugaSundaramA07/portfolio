@@ -8,7 +8,6 @@
   />
 </p>
 
-<!-- Animated Typing -->
 <p align="center">
   <img
     src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=18&duration=3000&pause=900&color=94A3B8&center=true&vCenter=true&width=600&lines=Building+for+the+web.;Turning+ideas+into+interactive+experiences.;React+%7C+JavaScript+%7C+Firebase"
@@ -17,15 +16,15 @@
 </p>
 
 <p align="center">
-  <a href="YOUR_LIVE_PORTFOLIO_URL" title="Explore my portfolio">
+  <a href="https://sun-portfolio02.vercel.app/" title="Explore my portfolio">
     <img src="https://img.shields.io/badge/PORTFOLIO-Visit-ffffff?style=for-the-badge&logo=vercel&logoColor=black" alt="Portfolio" />
   </a>
   &nbsp;
-  <a href="YOUR_GITHUB_URL" title="View my GitHub repositories">
+  <a href="https://github.com/ShunmugaSundaramA07" title="View my GitHub repositories">
     <img src="https://img.shields.io/badge/GITHUB-Projects-18181b?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
   </a>
   &nbsp;
-  <a href="YOUR_LINKEDIN_URL" title="Connect with me on LinkedIn">
+  <a href="https://www.linkedin.com/in/shunmuga-sundaram-a-3080102a1" title="Connect with me on LinkedIn">
     <img src="https://img.shields.io/badge/LINKEDIN-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
 </p>
@@ -66,7 +65,6 @@
   and hands-on projects.
 </p>
 
-<!-- Update this section with your verified experience -->
 <p align="center">
   <b>Internships & Work Experience</b><br />
   Add your role, organization, and duration here.
@@ -94,7 +92,7 @@
 </table>
 
 <p align="center">
-  <a href="YOUR_GITHUB_URL" title="Browse more projects">
+  <a href="https://github.com/ShunmugaSundaramA07" title="Browse more projects">
     <img src="https://img.shields.io/badge/VIEW%20ALL%20PROJECTS-18181b?style=for-the-badge&logo=github&logoColor=white" alt="View projects" />
   </a>
 </p>
@@ -114,6 +112,12 @@
 <p align="center">
   A dark visual style with GSAP-powered motion, responsive layouts,
   and a contact workflow integrated with Firebase Firestore and EmailJS.
+</p>
+
+<p align="center">
+  <a href="https://sun-portfolio02.vercel.app/" title="Visit the live portfolio">
+    <img src="https://img.shields.io/badge/EXPLORE%20PORTFOLIO-Visit%20Website-312e81?style=for-the-badge&logo=vercel&logoColor=white" alt="Explore portfolio" />
+  </a>
 </p>
 
 ---
@@ -141,11 +145,19 @@ npm run build
 npm run preview
 ```
 
-### Environment setup
+### Environment Setup
 
 Create a `.env` file in the project root and configure the environment variables required by your Firebase and EmailJS setup.
 
-Do not commit `.env` or private credentials to the repository. Configure production environment variables in Vercel before deployment.
+```env
+VITE_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
+VITE_EMAILJS_SERVICE_ID=your_emailjs_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+```
+
+- Never commit your `.env` file to GitHub.
+- Configure production environment variables in Vercel.
+- Never expose private keys or server secrets in frontend code.
 
 ---
 
@@ -157,14 +169,20 @@ Do not commit `.env` or private credentials to the repository. Configure product
 </p>
 
 <p align="center">
-  <a href="mailto:YOUR_EMAIL" title="Send me an email">
+  <a href="mailto:shunmugasundar07@gmail.com" title="Send me an email">
     <img src="https://img.shields.io/badge/EMAIL-Contact-c2410c?style=flat-square&logo=gmail&logoColor=white" alt="Email" />
   </a>
-  <a href="YOUR_LINKEDIN_URL" title="Visit my LinkedIn profile">
+  <a href="https://www.linkedin.com/in/shunmuga-sundaram-a-3080102a1" title="Visit my LinkedIn profile">
     <img src="https://img.shields.io/badge/LINKEDIN-Profile-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
-  <a href="YOUR_GITHUB_URL" title="Explore my repositories">
+  <a href="https://github.com/ShunmugaSundaramA07" title="Explore my repositories">
     <img src="https://img.shields.io/badge/GITHUB-Repositories-27272a?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://sun-portfolio02.vercel.app/">
+    <b>sun-portfolio02.vercel.app</b>
   </a>
 </p>
 
