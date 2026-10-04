@@ -5,21 +5,33 @@ import centerImage from '../assets/hero_assets/hero_center.png';
 
 const Hero = ({ onPreloadComplete }) => {
   const [text, setText] = useState('SUNDAR');
+
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const subtitleRef = useRef(null);
   const imageRef = useRef(null);
+  const onPreloadCompleteRef = useRef(onPreloadComplete);
+
+  // Keep the latest callback without restarting the animation effect.
+  onPreloadCompleteRef.current = onPreloadComplete;
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
     const target = 'PORTFOLIO';
     const start = 'SUNDAR';
+
     let iterations = 0;
-    let intervalId;
-    let timeoutId;
+    let intervalId = null;
+    let timeoutId = null;
     let isMounted = true;
+    let animationStarted = false;
+
+    // GSAP context ensures animations are reverted during cleanup.
+    const ctx = gsap.context(() => {}, containerRef);
 
     const imageLoadPromise = new Promise((resolve) => {
       const img = new window.Image();
@@ -38,9 +50,14 @@ const Hero = ({ onPreloadComplete }) => {
     });
 
     Promise.all([imageLoadPromise, delayPromise]).then(() => {
-      if (!isMounted) return;
+      if (!isMounted || animationStarted) return;
 
       intervalId = setInterval(() => {
+        if (!isMounted) {
+          clearInterval(intervalId);
+          return;
+        }
+
         setText(
           target
             .split('')
@@ -60,56 +77,64 @@ const Hero = ({ onPreloadComplete }) => {
 
         if (iterations >= target.length) {
           clearInterval(intervalId);
+          intervalId = null;
 
-          const tl = gsap.timeline({
-            onComplete: () => {
-              document.body.style.overflow = 'auto';
+          if (animationStarted) return;
+          animationStarted = true;
 
-              if (onPreloadComplete) {
-                onPreloadComplete();
-              }
-            },
+          ctx.add(() => {
+            const isMobile = window.innerWidth < 768;
+
+            const tl = gsap.timeline({
+              onComplete: () => {
+                if (!isMounted) return;
+
+                document.body.style.overflow = previousOverflow;
+
+                if (onPreloadCompleteRef.current) {
+                  onPreloadCompleteRef.current();
+                }
+              },
+            });
+
+            tl.to(
+              containerRef.current,
+              {
+                top: isMobile ? '20%' : '45%',
+                duration: 1.5,
+                ease: 'power3.inOut',
+              },
+              '+=0.2'
+            );
+
+            tl.fromTo(
+              subtitleRef.current,
+              {
+                y: 50,
+                opacity: 0,
+              },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: 'power3.out',
+              },
+              '-=1.0'
+            );
+
+            tl.fromTo(
+              imageRef.current,
+              {
+                y: '100vh',
+              },
+              {
+                y: 0,
+                duration: 1.5,
+                ease: 'power3.out',
+              },
+              '-=1.2'
+            );
           });
-
-          const isMobile = window.innerWidth < 768;
-
-          tl.to(
-            containerRef.current,
-            {
-              top: isMobile ? '20%' : '45%',
-              duration: 1.5,
-              ease: 'power3.inOut',
-            },
-            '+=0.2'
-          );
-
-          tl.fromTo(
-            subtitleRef.current,
-            {
-              y: 50,
-              opacity: 0,
-            },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 1.2,
-              ease: 'power3.out',
-            },
-            '-=1.0'
-          );
-
-          tl.fromTo(
-            imageRef.current,
-            {
-              y: '100vh',
-            },
-            {
-              y: 0,
-              duration: 1.5,
-              ease: 'power3.out',
-            },
-            '-=1.2'
-          );
         }
 
         iterations += 1 / 3;
@@ -118,11 +143,16 @@ const Hero = ({ onPreloadComplete }) => {
 
     return () => {
       isMounted = false;
-      document.body.style.overflow = 'auto';
+
       clearTimeout(timeoutId);
       clearInterval(intervalId);
+
+      // Stop and revert all GSAP animations created in this effect.
+      ctx.revert();
+
+      document.body.style.overflow = previousOverflow;
     };
-  }, [onPreloadComplete]);
+  }, []);
 
   return (
     <section
@@ -158,7 +188,8 @@ const Hero = ({ onPreloadComplete }) => {
 
       <div
         ref={imageRef}
-        className="relative z-10 text-center text-white flex flex-col items-center w-full pointer-events-none translate-y-[100vh]"
+        className="relative z-10 text-center text-white flex flex-col items-center w-full pointer-events-none"
+        style={{ transform: 'translateY(100vh)' }}
       >
         <img
           src={centerImage}
