@@ -118,10 +118,10 @@ const Footer = () => {
 
         </div>
 
-        {/* Decorative Name */}
+        {/* Decorative Name with Animated Border */}
         <div className="w-full text-center overflow-hidden">
           <h1
-            className="text-[clamp(2.5rem,7vw,6rem)] font-bold leading-none tracking-tighter text-white"
+            className="footer-name-border text-[clamp(2.5rem,7vw,6rem)] font-bold leading-none tracking-tighter text-white"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
             SUNDAR
