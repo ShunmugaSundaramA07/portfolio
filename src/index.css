@@ -439,3 +439,149 @@ body {
     animation: none;
   }
 }
+
+
+/* =========================================================
+   FOOTER - MOVING ENERGY BEAM DIVIDER
+   ========================================================= */
+
+.footer-energy-divider {
+  position: relative;
+  width: 100%;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Main subtle divider line */
+.footer-energy-divider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.12) 10%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.12) 90%,
+    transparent
+  );
+}
+
+/* Moving blue energy trail */
+.footer-energy-beam {
+  position: absolute;
+  top: 50%;
+  left: -180px;
+
+  width: 180px;
+  height: 2px;
+
+  transform: translateY(-50%);
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56, 189, 248, 0.15),
+    rgba(56, 189, 248, 0.55),
+    rgba(125, 211, 252, 0.95)
+  );
+
+  filter: blur(0.3px);
+
+  box-shadow:
+    0 0 5px rgba(56, 189, 248, 0.5),
+    0 0 12px rgba(56, 189, 248, 0.25);
+
+  animation: footer-energy-travel 4s linear infinite;
+}
+
+/* Glowing ✦ */
+.footer-energy-core {
+  position: absolute;
+  top: 50%;
+  left: -12px;
+
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateY(-50%);
+
+  color: #7dd3fc;
+  font-size: 13px;
+  line-height: 1;
+
+  text-shadow:
+    0 0 5px rgba(56, 189, 248, 0.9),
+    0 0 12px rgba(56, 189, 248, 0.7),
+    0 0 20px rgba(56, 189, 248, 0.4);
+
+  animation: footer-energy-core-travel 4s linear infinite;
+
+  z-index: 2;
+}
+
+/* Energy beam movement */
+@keyframes footer-energy-travel {
+  0% {
+    left: -180px;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+/* ✦ movement */
+@keyframes footer-energy-core-travel {
+  0% {
+    left: -12px;
+  }
+
+  100% {
+    left: calc(100% + 12px);
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .footer-energy-divider {
+    height: 22px;
+  }
+
+  .footer-energy-beam {
+    width: 130px;
+    left: -130px;
+  }
+
+  .footer-energy-core {
+    font-size: 11px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .footer-energy-beam,
+  .footer-energy-core {
+    animation: none;
+  }
+
+  .footer-energy-beam {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .footer-energy-core {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
