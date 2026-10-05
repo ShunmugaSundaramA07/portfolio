@@ -1,3 +1,4 @@
+import React from 'react';
 {/* Energy Beam Divider */}
 <div className="footer-energy-divider" aria-hidden="true">
   <span className="footer-energy-beam"></span>
