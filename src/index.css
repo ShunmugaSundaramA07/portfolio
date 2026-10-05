@@ -440,7 +440,6 @@ body {
   }
 }
 
-
 /* =========================================================
    FOOTER - MOVING ENERGY BEAM DIVIDER
    ========================================================= */
@@ -448,67 +447,52 @@ body {
 .footer-energy-divider {
   position: relative;
   width: 100%;
-  height: 26px;
+  height: 34px;
+  overflow: hidden;
   display: flex;
   align-items: center;
-  overflow: hidden;
 }
 
-/* Main subtle divider line */
-.footer-energy-divider::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 1px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.12) 10%,
-    rgba(255, 255, 255, 0.28) 50%,
-    rgba(255, 255, 255, 0.12) 90%,
-    transparent
-  );
-}
-
-/* Moving blue energy trail */
+/* Moving energy beam */
 .footer-energy-beam {
   position: absolute;
   top: 50%;
-  left: -180px;
+  left: -220px;
 
-  width: 180px;
+  width: 220px;
   height: 2px;
 
   transform: translateY(-50%);
 
   background: linear-gradient(
     90deg,
-    transparent,
-    rgba(56, 189, 248, 0.15),
-    rgba(56, 189, 248, 0.55),
-    rgba(125, 211, 252, 0.95)
+    transparent 0%,
+    rgba(56, 189, 248, 0.08) 15%,
+    rgba(56, 189, 248, 0.3) 45%,
+    rgba(125, 211, 252, 0.8) 75%,
+    #ffffff 100%
   );
 
-  filter: blur(0.3px);
+  border-radius: 999px;
 
   box-shadow:
-    0 0 5px rgba(56, 189, 248, 0.5),
-    0 0 12px rgba(56, 189, 248, 0.25);
+    0 0 5px rgba(56, 189, 248, 0.8),
+    0 0 12px rgba(56, 189, 248, 0.6),
+    0 0 25px rgba(56, 189, 248, 0.35);
 
   animation: footer-energy-travel 4s linear infinite;
+
+  z-index: 2;
 }
 
-/* Glowing ✦ */
+/* Glowing energy point */
 .footer-energy-core {
   position: absolute;
   top: 50%;
-  left: -12px;
+  left: -18px;
 
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
 
   display: flex;
   align-items: center;
@@ -516,24 +500,50 @@ body {
 
   transform: translateY(-50%);
 
-  color: #7dd3fc;
-  font-size: 13px;
-  line-height: 1;
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 700;
 
   text-shadow:
-    0 0 5px rgba(56, 189, 248, 0.9),
-    0 0 12px rgba(56, 189, 248, 0.7),
-    0 0 20px rgba(56, 189, 248, 0.4);
+    0 0 5px #38bdf8,
+    0 0 12px #38bdf8,
+    0 0 22px #38bdf8,
+    0 0 35px rgba(56, 189, 248, 0.8);
 
   animation: footer-energy-core-travel 4s linear infinite;
 
-  z-index: 2;
+  z-index: 3;
 }
 
-/* Energy beam movement */
+/* Small bright core behind ✦ */
+.footer-energy-core::before {
+  content: "";
+
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 6px #38bdf8,
+    0 0 14px #38bdf8,
+    0 0 25px rgba(56, 189, 248, 0.8);
+
+  z-index: -1;
+}
+
+/* =========================================================
+   ENERGY MOVEMENT
+   ========================================================= */
+
 @keyframes footer-energy-travel {
   0% {
-    left: -180px;
+    left: -220px;
   }
 
   100% {
@@ -541,35 +551,42 @@ body {
   }
 }
 
-/* ✦ movement */
 @keyframes footer-energy-core-travel {
   0% {
-    left: -12px;
+    left: -18px;
   }
 
   100% {
-    left: calc(100% + 12px);
+    left: calc(100% + 18px);
   }
 }
 
-/* Mobile */
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 640px) {
+
   .footer-energy-divider {
-    height: 22px;
+    height: 28px;
   }
 
   .footer-energy-beam {
-    width: 130px;
-    left: -130px;
+    width: 150px;
+    left: -150px;
   }
 
   .footer-energy-core {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
-/* Reduced motion */
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
+
   .footer-energy-beam,
   .footer-energy-core {
     animation: none;
