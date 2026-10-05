@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import resumePDF from '../assets/resume/sun_salesforce.pdf';
 
@@ -113,14 +112,19 @@ const Navbar = () => {
             </a>
           ))}
 
-          {/* Resume Button */}
+          {/* Desktop Resume Button */}
           <a
             href={resumePDF}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 text-sm hover:text-sky-400 transition-colors uppercase tracking-wider font-medium cursor-pointer"
+            className="resume-button"
+            aria-label="Open Resume"
           >
-            Resume
+            <div className="resume-button-layer">
+              <div className="resume-button-content">
+                <span>Resume</span>
+              </div>
+            </div>
           </a>
         </div>
 
@@ -191,20 +195,27 @@ const Navbar = () => {
             </a>
           ))}
 
-          {/* Mobile Resume Link */}
+          {/* Mobile Resume Button */}
           <a
             href={resumePDF}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsMenuOpen(false)}
-            style={{ transitionDelay: `${navLinks.length * 100}ms` }}
-            className={`text-white text-2xl font-black uppercase tracking-widest hover:text-sky-400 transition-all duration-500 ${
+            style={{
+              transitionDelay: `${navLinks.length * 100}ms`,
+            }}
+            className={`resume-button mobile-resume-button ${
               isMenuOpen
                 ? 'translate-y-0 opacity-100'
                 : 'translate-y-8 opacity-0'
             }`}
+            aria-label="Open Resume"
           >
-            Resume
+            <div className="resume-button-layer">
+              <div className="resume-button-content">
+                <span>Resume</span>
+              </div>
+            </div>
           </a>
         </div>
       </div>
