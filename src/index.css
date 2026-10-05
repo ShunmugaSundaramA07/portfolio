@@ -1,4 +1,3 @@
-
 @import "tailwindcss";
 
 /* Hide scrollbar globally but allow scrolling */
@@ -9,11 +8,13 @@
 html,
 body {
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
   scroll-behavior: smooth;
 }
+
+/* =========================================================
+   MARQUEE
+   ========================================================= */
 
 @keyframes marquee {
   0% {
@@ -41,6 +42,10 @@ body {
   animation: marquee 30s linear infinite reverse;
 }
 
+/* =========================================================
+   ENTER ANIMATION
+   ========================================================= */
+
 @keyframes enter-bottom-right {
   0% {
     clip-path: inset(100% 0 0 100%);
@@ -54,8 +59,13 @@ body {
 }
 
 .animate-enter-br {
-  animation: enter-bottom-right 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation: enter-bottom-right 0.8s
+    cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
+
+/* =========================================================
+   WATER FILL
+   ========================================================= */
 
 @keyframes waterFill {
   0% {
@@ -68,16 +78,28 @@ body {
 }
 
 .animate-water-fill {
-  background: linear-gradient(to top, #ccff00 50%, transparent 50%);
+  background: linear-gradient(
+    to top,
+    #ccff00 50%,
+    transparent 50%
+  );
+
   background-size: 100% 200%;
   background-position: 0% 0%;
+
   -webkit-background-clip: text;
   color: transparent;
+
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-  animation: waterFill 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+  animation: waterFill 2s
+    cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Animated border around the footer name */
+/* =========================================================
+   FOOTER NAME - ANIMATED BORDER
+   ========================================================= */
+
 @property --footer-border-angle {
   syntax: "<angle>";
   initial-value: 0deg;
@@ -108,10 +130,12 @@ body {
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
+
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 
   animation: footer-border-run 2.5s linear infinite;
+
   pointer-events: none;
   z-index: -1;
 }
@@ -122,8 +146,295 @@ body {
   }
 }
 
-/* Respect reduced-motion accessibility settings */
+/* =========================================================
+   RESUME BUTTON
+   UIVERSE-INSPIRED
+   SKY BLUE VERSION
+   ========================================================= */
+
+.resume-button {
+  --resume-white: #ffffff;
+  --resume-black: #09090b;
+  --resume-blue: #38bdf8;
+  --resume-blue-dark: #0284c7;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 105px;
+  height: 42px;
+
+  cursor: pointer;
+  text-decoration: none;
+
+  color: var(--resume-white);
+
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+
+  border-radius: 0.75rem;
+  outline: 2px solid transparent;
+  outline-offset: 5px;
+
+  isolation: isolate;
+}
+
+/* Rotating star/light behind button */
+.resume-button::before {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+
+  width: 180%;
+  height: 180%;
+
+  max-width: 120px;
+  max-height: 120px;
+
+  background: var(--resume-white);
+
+  clip-path: polygon(
+    100% 50%,
+    91.48% 56.57%,
+    97.55% 65.45%,
+    87.42% 69.07%,
+    90.45% 79.39%,
+    79.7% 79.7%,
+    79.39% 90.45%,
+    69.07% 87.42%,
+    65.45% 97.55%,
+    56.57% 91.48%,
+    50% 100%,
+    43.43% 91.48%,
+    34.55% 97.55%,
+    30.93% 87.42%,
+    20.61% 90.45%,
+    20.3% 79.7%,
+    9.55% 79.39%,
+    12.58% 69.07%,
+    2.45% 65.45%,
+    8.52% 56.57%,
+    0% 50%,
+    8.52% 43.43%,
+    2.45% 34.55%,
+    12.58% 30.93%,
+    9.55% 20.61%,
+    20.3% 20.3%,
+    20.61% 9.55%,
+    30.93% 12.58%,
+    34.55% 2.45%,
+    43.43% 8.52%,
+    50% 0%,
+    56.57% 8.52%,
+    65.45% 2.45%,
+    69.07% 12.58%,
+    79.39% 9.55%,
+    79.7% 20.3%,
+    90.45% 20.61%,
+    87.42% 30.93%,
+    97.55% 34.55%,
+    91.48% 43.43%
+  );
+
+  opacity: 0.08;
+
+  animation: resume-star-rotate 4s linear infinite;
+
+  pointer-events: none;
+}
+
+/* Stronger effect on hover */
+.resume-button:hover::before {
+  opacity: 0.9;
+}
+
+/* Blue outer layer */
+.resume-button-layer {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 2px;
+
+  border-radius: 0.75rem;
+
+  background: var(--resume-blue);
+
+  transform: translate(-3px, -3px);
+
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+
+  box-shadow:
+    0.5px 0.5px 0 var(--resume-blue),
+    1px 1px 0 var(--resume-blue),
+    1.5px 1.5px 0 var(--resume-blue),
+    2px 2px 0 var(--resume-blue),
+    2.5px 2.5px 0 var(--resume-blue),
+    3px 3px 0 var(--resume-blue),
+
+    0 0 0 2px var(--resume-black),
+    1px 1px 0 2px var(--resume-black),
+    2px 2px 0 2px var(--resume-black),
+    3px 3px 0 2px var(--resume-black),
+
+    0 0 0 4px var(--resume-white),
+    1px 1px 0 4px var(--resume-white),
+    2px 2px 0 4px var(--resume-white);
+}
+
+/* Hover pushes the button into place */
+.resume-button:hover .resume-button-layer {
+  transform: translate(0, 0);
+
+  box-shadow:
+    0 0 0 0 var(--resume-blue),
+    0 0 0 2px var(--resume-black),
+    0 0 0 4px var(--resume-white);
+}
+
+/* Inner black button */
+.resume-button-content {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: calc(0.75rem - 2px);
+
+  background: var(--resume-black);
+
+  overflow: hidden;
+
+  filter: drop-shadow(
+    0 -1px 0 var(--resume-black)
+  );
+}
+
+/* Moving dot texture */
+.resume-button-content::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.08;
+
+  background-image:
+    radial-gradient(
+      rgba(255, 255, 255, 0.9) 20%,
+      transparent 20%
+    ),
+    radial-gradient(
+      rgba(255, 255, 255, 1) 20%,
+      transparent 20%
+    );
+
+  background-position:
+    0 0,
+    4px 4px;
+
+  background-size: 8px 8px;
+
+  mix-blend-mode: hard-light;
+
+  box-shadow:
+    inset 0 0 0 1px var(--resume-black);
+
+  animation: resume-dots 0.4s infinite linear;
+
+  transition: opacity 150ms ease;
+}
+
+.resume-button:hover .resume-button-content::before {
+  opacity: 0.18;
+}
+
+/* Resume text */
+.resume-button-content span {
+  position: relative;
+  z-index: 2;
+
+  color: #ffffff;
+
+  transition:
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+.resume-button:hover .resume-button-content span {
+  color: #e0f2fe;
+}
+
+/* Active press */
+.resume-button:active .resume-button-layer {
+  transform: translate(0, 2px);
+}
+
+/* =========================================================
+   RESUME ANIMATIONS
+   ========================================================= */
+
+@keyframes resume-star-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes resume-dots {
+  0% {
+    background-position:
+      0 0,
+      4px 4px;
+  }
+
+  100% {
+    background-position:
+      8px 0,
+      12px 4px;
+  }
+}
+
+/* =========================================================
+   MOBILE RESUME BUTTON
+   ========================================================= */
+
+.mobile-resume-button {
+  min-width: 145px;
+  height: 52px;
+
+  font-size: 0.9rem;
+  letter-spacing: 0.16em;
+
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
+  .resume-button::before,
+  .resume-button-content::before,
   .footer-name-border::before {
     animation: none;
   }
