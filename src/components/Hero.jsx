@@ -179,7 +179,7 @@ const Hero = ({ onPreloadComplete }) => {
           ref={subtitleRef}
           className="absolute -bottom-8 left-1/2 -translate-x-1/2 md:translate-x-0 md:-bottom-12 md:left-8 text-white text-base md:text-2xl lg:text-4xl drop-shadow-md z-10 opacity-0 w-max"
         >
-          <span className="font-bold">Software</span>{' '}
+          <span className="font-bold">CSE STUDENT</span>{' '}
           <span className="font-light italic text-gray-300">
             Developer
           </span>
