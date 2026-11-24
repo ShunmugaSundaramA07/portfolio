@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import resumePDF from '../assets/resume/sun_salesforce.pdf';
+import resumePDF from '../assets/resume/CDW.pdf';
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
