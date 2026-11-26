@@ -1,0 +1,710 @@
+@import "tailwindcss";
+
+/* Hide scrollbar globally but allow scrolling */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+/* =========================================================
+   MARQUEE
+   ========================================================= */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-slow {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee-slow-reverse {
+  animation: marquee 40s linear infinite reverse;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 30s linear infinite reverse;
+}
+
+/* =========================================================
+   ENTER ANIMATION
+   ========================================================= */
+
+@keyframes enter-bottom-right {
+  0% {
+    clip-path: inset(100% 0 0 100%);
+    opacity: 0;
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+.animate-enter-br {
+  animation: enter-bottom-right 0.8s
+    cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* =========================================================
+   WATER FILL
+   ========================================================= */
+
+@keyframes waterFill {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
+.animate-water-fill {
+  background: linear-gradient(
+    to top,
+    #ccff00 50%,
+    transparent 50%
+  );
+
+  background-size: 100% 200%;
+  background-position: 0% 0%;
+
+  -webkit-background-clip: text;
+  color: transparent;
+
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+
+  animation: waterFill 2s
+    cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* =========================================================
+   FOOTER NAME - ANIMATED BORDER
+   ========================================================= */
+
+@property --footer-border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.footer-name-border {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  padding: 0.12em 0.18em;
+}
+
+.footer-name-border::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  padding: 2px;
+  border-radius: 6px;
+
+  background: conic-gradient(
+    from var(--footer-border-angle),
+    transparent 0deg 290deg,
+    #000000 315deg 350deg,
+    transparent 360deg
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  animation: footer-border-run 2.5s linear infinite;
+
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes footer-border-run {
+  to {
+    --footer-border-angle: 360deg;
+  }
+}
+
+/* =========================================================
+   FOOTER NAME - TELETYPE TYPEWRITER
+   ========================================================= */
+
+:root {
+  --ink: #ffffff;
+  --ink-2: #38bdf8;
+  --ink-3: #4FF8FF;
+}
+
+.fx-typewriter {
+  box-sizing: content-box;
+  font: 700 clamp(2.25rem, 6vw, 4.5rem)/1.15 "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  letter-spacing: 0;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  width: 6ch; /* "SUNDAR" = 6 characters */
+  border-right: 0.45ch solid var(--ink-2);
+  animation:
+    fx-type 3.6s steps(6) infinite,
+    fx-caret 0.65s steps(1) infinite;
+}
+
+@keyframes fx-type {
+  0%, 8%    { width: 0; }
+  55%, 100% { width: 6ch; }
+}
+
+@keyframes fx-caret {
+  50% { border-color: transparent; }
+}
+
+/* =========================================================
+   RESUME BUTTON
+   UIVERSE-INSPIRED
+   SKY BLUE VERSION
+   ========================================================= */
+
+.resume-button {
+  --resume-white: #ffffff;
+  --resume-black: #09090b;
+  --resume-blue: #38bdf8;
+  --resume-blue-dark: #0284c7;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 105px;
+  height: 42px;
+
+  cursor: pointer;
+  text-decoration: none;
+
+  color: var(--resume-white);
+
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+
+  border-radius: 0.75rem;
+  outline: 2px solid transparent;
+  outline-offset: 5px;
+
+  isolation: isolate;
+}
+
+/* Rotating star/light behind button */
+.resume-button::before {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+
+  width: 180%;
+  height: 180%;
+
+  max-width: 120px;
+  max-height: 120px;
+
+  background: var(--resume-white);
+
+  clip-path: polygon(
+    100% 50%,
+    91.48% 56.57%,
+    97.55% 65.45%,
+    87.42% 69.07%,
+    90.45% 79.39%,
+    79.7% 79.7%,
+    79.39% 90.45%,
+    69.07% 87.42%,
+    65.45% 97.55%,
+    56.57% 91.48%,
+    50% 100%,
+    43.43% 91.48%,
+    34.55% 97.55%,
+    30.93% 87.42%,
+    20.61% 90.45%,
+    20.3% 79.7%,
+    9.55% 79.39%,
+    12.58% 69.07%,
+    2.45% 65.45%,
+    8.52% 56.57%,
+    0% 50%,
+    8.52% 43.43%,
+    2.45% 34.55%,
+    12.58% 30.93%,
+    9.55% 20.61%,
+    20.3% 20.3%,
+    20.61% 9.55%,
+    30.93% 12.58%,
+    34.55% 2.45%,
+    43.43% 8.52%,
+    50% 0%,
+    56.57% 8.52%,
+    65.45% 2.45%,
+    69.07% 12.58%,
+    79.39% 9.55%,
+    79.7% 20.3%,
+    90.45% 20.61%,
+    87.42% 30.93%,
+    97.55% 34.55%,
+    91.48% 43.43%
+  );
+
+  opacity: 0.08;
+
+  animation: resume-star-rotate 4s linear infinite;
+
+  pointer-events: none;
+}
+
+/* Stronger effect on hover */
+.resume-button:hover::before {
+  opacity: 0.9;
+}
+
+/* Blue outer layer */
+.resume-button-layer {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 2px;
+
+  border-radius: 0.75rem;
+
+  background: var(--resume-blue);
+
+  transform: translate(-3px, -3px);
+
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+
+  box-shadow:
+    0.5px 0.5px 0 var(--resume-blue),
+    1px 1px 0 var(--resume-blue),
+    1.5px 1.5px 0 var(--resume-blue),
+    2px 2px 0 var(--resume-blue),
+    2.5px 2.5px 0 var(--resume-blue),
+    3px 3px 0 var(--resume-blue),
+
+    0 0 0 2px var(--resume-black),
+    1px 1px 0 2px var(--resume-black),
+    2px 2px 0 2px var(--resume-black),
+    3px 3px 0 2px var(--resume-black),
+
+    0 0 0 4px var(--resume-white),
+    1px 1px 0 4px var(--resume-white),
+    2px 2px 0 4px var(--resume-white);
+}
+
+/* Hover pushes the button into place */
+.resume-button:hover .resume-button-layer {
+  transform: translate(0, 0);
+
+  box-shadow:
+    0 0 0 0 var(--resume-blue),
+    0 0 0 2px var(--resume-black),
+    0 0 0 4px var(--resume-white);
+}
+
+/* Inner black button */
+.resume-button-content {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: calc(0.75rem - 2px);
+
+  background: var(--resume-black);
+
+  overflow: hidden;
+
+  filter: drop-shadow(
+    0 -1px 0 var(--resume-black)
+  );
+}
+
+/* Moving dot texture */
+.resume-button-content::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.08;
+
+  background-image:
+    radial-gradient(
+      rgba(255, 255, 255, 0.9) 20%,
+      transparent 20%
+    ),
+    radial-gradient(
+      rgba(255, 255, 255, 1) 20%,
+      transparent 20%
+    );
+
+  background-position:
+    0 0,
+    4px 4px;
+
+  background-size: 8px 8px;
+
+  mix-blend-mode: hard-light;
+
+  box-shadow:
+    inset 0 0 0 1px var(--resume-black);
+
+  animation: resume-dots 0.4s infinite linear;
+
+  transition: opacity 150ms ease;
+}
+
+.resume-button:hover .resume-button-content::before {
+  opacity: 0.18;
+}
+
+/* Resume text */
+.resume-button-content span {
+  position: relative;
+  z-index: 2;
+
+  color: #ffffff;
+
+  transition:
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+.resume-button:hover .resume-button-content span {
+  color: #e0f2fe;
+}
+
+/* Active press */
+.resume-button:active .resume-button-layer {
+  transform: translate(0, 2px);
+}
+
+/* =========================================================
+   RESUME ANIMATIONS
+   ========================================================= */
+
+@keyframes resume-star-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes resume-dots {
+  0% {
+    background-position:
+      0 0,
+      4px 4px;
+  }
+
+  100% {
+    background-position:
+      8px 0,
+      12px 4px;
+  }
+}
+
+/* =========================================================
+   MOBILE RESUME BUTTON
+   ========================================================= */
+
+.mobile-resume-button {
+  min-width: 145px;
+  height: 52px;
+
+  font-size: 0.9rem;
+  letter-spacing: 0.16em;
+
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .resume-button::before,
+  .resume-button-content::before,
+  .footer-name-border::before {
+    animation: none;
+  }
+
+  .fx-typewriter {
+    width: auto;
+    border-right: none;
+    animation: none;
+  }
+}
+
+/* =========================================================
+   FOOTER - MOVING ENERGY BEAM DIVIDER
+   ========================================================= */
+
+.footer-energy-divider {
+  position: relative;
+  width: 100%;
+  height: 34px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* Moving energy beam */
+.footer-energy-beam {
+  position: absolute;
+  top: 50%;
+  left: -220px;
+
+  width: 220px;
+  height: 2px;
+
+  transform: translateY(-50%);
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.08) 15%,
+    rgba(56, 189, 248, 0.3) 45%,
+    rgba(125, 211, 252, 0.8) 75%,
+    #ffffff 100%
+  );
+
+  border-radius: 999px;
+
+  box-shadow:
+    0 0 5px rgba(56, 189, 248, 0.8),
+    0 0 12px rgba(56, 189, 248, 0.6),
+    0 0 25px rgba(56, 189, 248, 0.35);
+
+  animation: footer-energy-travel 4s linear infinite;
+
+  z-index: 2;
+}
+
+/* Glowing energy point */
+.footer-energy-core {
+  position: absolute;
+  top: 50%;
+  left: -18px;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateY(-50%);
+
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  text-shadow:
+    0 0 5px #38bdf8,
+    0 0 12px #38bdf8,
+    0 0 22px #38bdf8,
+    0 0 35px rgba(56, 189, 248, 0.8);
+
+  animation: footer-energy-core-travel 4s linear infinite;
+
+  z-index: 3;
+}
+
+/* Small bright core behind ✦ */
+.footer-energy-core::before {
+  content: "";
+
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 6px #38bdf8,
+    0 0 14px #38bdf8,
+    0 0 25px rgba(56, 189, 248, 0.8);
+
+  z-index: -1;
+}
+
+/* =========================================================
+   ENERGY MOVEMENT
+   ========================================================= */
+
+@keyframes footer-energy-travel {
+  0% {
+    left: -220px;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes footer-energy-core-travel {
+  0% {
+    left: -18px;
+  }
+
+  100% {
+    left: calc(100% + 18px);
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+  .footer-energy-divider {
+    height: 28px;
+  }
+
+  .footer-energy-beam {
+    width: 150px;
+    left: -150px;
+  }
+
+  .footer-energy-core {
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .footer-energy-beam,
+  .footer-energy-core {
+    animation: none;
+  }
+
+  .footer-energy-beam {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .footer-energy-core {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* =========================================================
+   FOOTER - NIGHT ROAD, STREETLAMPS & BIKE SCENE
+   ========================================================= */
+
+@keyframes footer-bike-ride {
+  0% {
+    transform: translateX(-180px);
+  }
+  100% {
+    transform: translateX(1620px);
+  }
+}
+
+@keyframes footer-bike-bounce {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2.5px);
+  }
+}
+
+@keyframes footer-wheel-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes footer-lamp-flicker {
+  0%, 100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.footer-bike-track {
+  animation: footer-bike-ride 14s linear infinite;
+}
+
+.footer-bike-chassis {
+  animation: footer-bike-bounce 0.6s ease-in-out infinite;
+}
+
+.footer-wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: footer-wheel-spin 0.7s linear infinite;
+}
+
+.footer-lamp-cone {
+  animation: footer-lamp-flicker 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-bike-track,
+  .footer-bike-chassis,
+  .footer-wheel,
+  .footer-lamp-cone {
+    animation: none;
+  }
+}
